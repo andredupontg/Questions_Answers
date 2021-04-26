@@ -1,0 +1,16 @@
+<%- include("partials/header") %>
+
+<main class="form-signin">
+    <form method="POST" action="<%=action%>">
+        <h1 class="h3 mb-3 fw-normal">Questions & Answer</h1>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" autocomplete="off">
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" autocomplete="off">
+        </div>
+        <button class="w-100 btn btn-lg btn-primary botones" type="submit"><%=log_sign%></button>
+    </form>
+</main>
+
+<%- include("partials/footer") %>
