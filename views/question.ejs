@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+
+<main role="main" class="inner cover">
+    <h1 class="cover-heading">Espero te sea de util!</h1>
+    <div class="card pregunta" style="width: 18rem;">
+        <div class="card-header titulo">
+            <%=question.title%>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item contenido"><%=question.content%></li>
+        </ul>
+    </div>
+    <% answers.forEach((answer) => {%>
+        <div class="card respuesta" style="width: 18rem;">
+            <div class="card-header">
+                <%=answer.content%>
+            </div>
+        </div>
+    <%})%>
+</main>
+
+<%- include("partials/footer") %>

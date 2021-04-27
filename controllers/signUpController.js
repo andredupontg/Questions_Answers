@@ -14,7 +14,7 @@ const crearUsuario = (req, res) => {
                     password: req.body.password
                 });
                 user.save();
-                res.send("Usuario creado");
+                res.redirect("/authQuestions");
             } else{
                 res.send("El usuario ya existe!");
             }

@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+<main role="main" class="inner cover">
+    <h1 class="cover-heading">Si no encuentras usa el buscador!</h1>
+    <form class="formulario" action="/searchQuestion" method="post">
+        <div class="form-floating">
+            <input type="text" class="form-control" name="pregunta" id="floatingInput" placeholder="Titulo basado en Keywords unidos con '_'" autocomplete="off">
+        </div>
+        <button class="w-100 btn btn-lg btn-primary botones" type="submit">Buscar</button>
+    </form>
+    <% questions.forEach((question) => {%>
+        <div class="card pregunta" style="width: 18rem;">
+            <div class="card-header titulo">
+                <%=question.title%>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido"><%=question.content%> <a class="detalle" href="/questions/:<%=question.title%>">Detalle</a></li>
+            </ul>
+        </div>
+    <%})%>
+</main>
+
+<%- include("partials/footer") %>

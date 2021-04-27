@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const usuario = require("./usuario");
 
 const questionSchema = new mongoose.Schema({
-    user: {type: usuario.userSchema, required: true},
     title: {type: String, required: true},
     content: {type: String, required: true}
 });

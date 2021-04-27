@@ -8,7 +8,7 @@ const mostrarLogIn = (req, res) => {
 const verificarUsuario = (req, res) => {
     User.findOne({username: req.body.username, password: req.body.password}, (err, userFound) => {
         if(!err){
-            (userFound) ? res.send("Si existe") : res.send("Este usuario no existe!")
+            (userFound) ? res.redirect("/authQuestions") : res.send("Este usuario no existe!")
         } else {
             res.send(err);
         }
