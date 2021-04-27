@@ -12,6 +12,7 @@
         <div class="form-floating">
             <input type="text" class="form-control" name="title" id="floatingInput" placeholder="Titulo basado en Keywords unidos con '_'" autocomplete="off">
             <textarea name="content" rows="5" cols="80"></textarea>
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" autocomplete="off">
         </div>
         <button class="w-100 btn btn-lg btn-primary botones" type="submit">Crear</button>
     </form>
@@ -22,6 +23,9 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item contenido"><%=question.content%> <a class="detalle" href="/authQuestions/:<%=question.title%>">Detalle</a></li>
+            </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido">por <%=question.user.username%> </li>
             </ul>
         </div>
     <%})%>

@@ -1,5 +1,7 @@
 const pregunta = require("../models/pregunta");
 const Question = pregunta.Question;
+const usuario = require("../models/usuario");
+const User = usuario.User;
 
 const mostrarPreguntas = (req, res) => {
     if(req.isAuthenticated()){
@@ -22,17 +24,28 @@ const mostrarPreguntas = (req, res) => {
 
 const crearPregunta = (req, res) => {
     if(req.isAuthenticated()){
-        Question.findOne({title: req.body.title}, (err, questionFound) => {
+        User.findOne({username: req.body.username}, (err, userFound) => {
             if(!err){
-                if(!questionFound){
-                    const question = new Question({
-                        title: req.body.title,
-                        content: req.body.content.substring(3, req.body.content.length - 6)
-                    });
-                    question.save();
-                    res.redirect("/authQuestions");
+                if(userFound){
+                    Question.findOne({title: req.body.title}, (err, questionFound) => {
+                        if(!err){
+                            if(!questionFound){
+                                const question = new Question({
+                                    title: req.body.title,
+                                    content: req.body.content.substring(3, req.body.content.length - 6),
+                                    user: userFound
+                                });
+                                question.save();
+                                res.redirect("/authQuestions");
+                            } else{
+                                res.send("Ya existe la pregunta!");
+                            }
+                        } else{
+                            res.send(err);
+                        }
+                    });                    
                 } else{
-                    res.send("Ya existe la pregunta!");
+                    res.send("El usuario no existe");
                 }
             } else{
                 res.send(err);

@@ -6,6 +6,7 @@
         <div class="form-floating">
             <input type="text" class="form-control" name="title" id="floatingInput" placeholder="Titulo de la pregunta" autocomplete="off">
             <textarea name="content" rows="5" cols="80"></textarea>
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" autocomplete="off">
         </div>
         <button class="w-100 btn btn-lg btn-primary botones" type="submit">Responder</button>
     </form>
@@ -17,12 +18,18 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item contenido"><%=question.content%></li>
         </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item contenido">por <%=question.user.username%> </li>
+        </ul>
     </div>
     <% answers.forEach((answer) => {%>
         <div class="card respuesta" style="width: 25rem;">
             <div class="card-header">
                 <%=answer.content%>
             </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido">por <%=answer.user.username%> </li>
+            </ul>
         </div>
     <%})%>
 </main>

@@ -4,6 +4,7 @@ const usuario = require("./usuario");
 
 const answerSchema = new mongoose.Schema({
     question: {type: pregunta.questionSchema, required: true},
+    user: {type: usuario.userSchema, required: true},
     content: {type: String, required: true},
     correct: {type: Boolean, default: false}
 });

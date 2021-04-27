@@ -16,6 +16,9 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item contenido"><%=question.content%> <a class="detalle" href="/questions/:<%=question.title%>">Detalle</a></li>
             </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido">por <%=question.user.username%> </li>
+            </ul>
         </div>
     <%})%>
 </main>

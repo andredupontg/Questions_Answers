@@ -2,6 +2,8 @@ const pregunta = require("../models/pregunta");
 const Question = pregunta.Question;
 const respuesta = require("../models/respuesta");
 const Answer = respuesta.Answer;
+const usuario = require("../models/usuario");
+const User = usuario.User;
 
 const mostrarPreguntaRespuesta = (req, res) => {
     if(req.isAuthenticated()){
@@ -41,7 +43,10 @@ const mostrarPreguntaRespuesta = (req, res) => {
 
 const responderPregunta = (req, res) => {
     if(req.isAuthenticated()){
-        const titulo = req.body.title;
+        User.findOne({username: req.body.username}, (err, userFound) => {
+            if(!err){
+                if(userFound){
+                    const titulo = req.body.title;
         const content = req.body.content;
         Question.findOne({title: titulo}, (err, questionFound) => {
             if(!err){
@@ -49,12 +54,17 @@ const responderPregunta = (req, res) => {
                     Answer.findOne({content: content}, (err, answerFound) => {
                         if(!err){
                             if(!answerFound){
-                                const answer = new Answer({
-                                    question: questionFound,
-                                    content: content.substring(3, content.length - 6)
-                                });
-                                answer.save();
-                                res.redirect("/authQuestions");
+                                if(questionFound.user.username != req.body.username){
+                                    const answer = new Answer({
+                                        question: questionFound,
+                                        user: userFound,
+                                        content: content.substring(3, content.length - 6)
+                                    });
+                                    answer.save();
+                                    res.redirect("/authQuestions");
+                                } else{
+                                    res.redirect("/authQuestions");
+                                }
                             } else{
                                 res.send("Ya existe esa misma respuesta!");
                             }
@@ -63,6 +73,13 @@ const responderPregunta = (req, res) => {
                         }
                     });
                 } else{
+                }
+            } else{
+                res.send(err);
+            }
+        });
+                } else{
+                    res.send("El usuario no existe!");
                 }
             } else{
                 res.send(err);

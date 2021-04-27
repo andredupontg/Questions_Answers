@@ -10,12 +10,18 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item contenido"><%=question.content.substring(3, question.content.length - 6)%></li>
         </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item contenido">por <%=question.user.username%> </li>
+        </ul>
     </div>
     <% answers.forEach((answer) => {%>
         <div class="card respuesta" style="width: 25rem;">
             <div class="card-header">
                 <%=answer.content%>
             </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido">por <%=answer.user.username%> </li>
+            </ul>
         </div>
     <%})%>
 </main>
