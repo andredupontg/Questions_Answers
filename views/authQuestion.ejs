@@ -10,7 +10,7 @@
         <button class="w-100 btn btn-lg btn-primary botones" type="submit">Responder</button>
     </form>
     <a href="/authQuestions" class="btn btn-lg btn-secondary botones">Ver todas las preguntas</a>
-    <div class="card pregunta" style="width: 18rem;">
+    <div class="card pregunta" style="width: 25rem;">
         <div class="card-header titulo">
             <%=question.title%>
         </div>
@@ -19,7 +19,7 @@
         </ul>
     </div>
     <% answers.forEach((answer) => {%>
-        <div class="card respuesta" style="width: 18rem;">
+        <div class="card respuesta" style="width: 25rem;">
             <div class="card-header">
                 <%=answer.content%>
             </div>

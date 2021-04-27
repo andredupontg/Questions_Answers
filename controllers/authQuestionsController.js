@@ -6,7 +6,8 @@ const mostrarPreguntas = (req, res) => {
         Question.find({}, (err, questions) => {
             if(!err){
                 if(questions){
-                    res.render("authQuestions", {questions: questions});
+                    const sortedQuestions = [...questions].reverse();
+                    res.render("authQuestions", {questions: sortedQuestions});
                 } else{
                     res.send("No hay preguntas!");
                 }
