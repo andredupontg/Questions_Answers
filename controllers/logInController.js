@@ -1,32 +1,22 @@
+const passport = require("passport");
 const usuario = require("../models/usuario");
 const User = usuario.User;
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
-
 
 const mostrarLogIn = (req, res) => {
     res.render("log_sign",{log_sign: "Iniciar Sesion", action: "/logIn"});
 }
 
 const verificarUsuario = (req, res) => {
-    User.findOne({username: req.body.username}, (err, userFound) => {
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
+    req.login(user, (err) => {
         if(!err){
-            if(userFound){
-                bcrypt.compare(req.body.password, userFound.password, (err, result) => {
-                    if(!err){
-                        if(result === true){
-                            res.redirect("/authQuestions");
-                        } else{
-                            res.send("Contraseña incorrecta!");
-                        }
-                    } else{
-                        res.send(err);
-                    }
-                });
-            } else{
-                res.send("Este usuario no existe!");
-            }
-        } else {
+            passport.authenticate("local")(req, res, () => {
+                res.redirect("/authQuestions");
+            });
+        } else{
             res.send(err);
         }
     });
