@@ -5,7 +5,7 @@
     <form class="formulario" method="POST" action="/authQuestions/:pregunta">
         <div class="form-floating">
             <input type="text" class="form-control" name="title" id="floatingInput" placeholder="Titulo de la pregunta" autocomplete="off">
-            <input type="text" class="form-control" name="content" id="floatingInput" placeholder="Respuesta" autocomplete="off">
+            <textarea name="content" rows="5" cols="80"></textarea>
         </div>
         <button class="w-100 btn btn-lg btn-primary botones" type="submit">Responder</button>
     </form>
@@ -26,5 +26,9 @@
         </div>
     <%})%>
 </main>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("content");
+</script>
 
 <%- include("partials/footer") %>

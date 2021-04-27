@@ -27,7 +27,7 @@ const crearPregunta = (req, res) => {
                 if(!questionFound){
                     const question = new Question({
                         title: req.body.title,
-                        content: req.body.content
+                        content: req.body.content.substring(3, req.body.content.length - 6)
                     });
                     question.save();
                     res.redirect("/authQuestions");

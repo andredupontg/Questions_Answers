@@ -51,7 +51,7 @@ const responderPregunta = (req, res) => {
                             if(!answerFound){
                                 const answer = new Answer({
                                     question: questionFound,
-                                    content: content,
+                                    content: content.substring(3, content.length - 6)
                                 });
                                 answer.save();
                                 res.redirect("/authQuestions");
