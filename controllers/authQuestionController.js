@@ -47,37 +47,37 @@ const responderPregunta = (req, res) => {
             if(!err){
                 if(userFound){
                     const titulo = req.body.title;
-        const content = req.body.content;
-        Question.findOne({title: titulo}, (err, questionFound) => {
-            if(!err){
-                if(questionFound){
-                    Answer.findOne({content: content}, (err, answerFound) => {
+                    const content = req.body.content;
+                    Question.findOne({title: titulo}, (err, questionFound) => {
                         if(!err){
-                            if(!answerFound){
-                                if(questionFound.user.username != req.body.username){
-                                    const answer = new Answer({
-                                        question: questionFound,
-                                        user: userFound,
-                                        content: content.substring(3, content.length - 6)
-                                    });
-                                    answer.save();
-                                    res.redirect("/authQuestions");
-                                } else{
-                                    res.redirect("/authQuestions");
-                                }
+                            if(questionFound){
+                                Answer.findOne({content: content}, (err, answerFound) => {
+                                    if(!err){
+                                        if(!answerFound){
+                                            if(questionFound.user.username != req.body.username){
+                                                const answer = new Answer({
+                                                    question: questionFound,
+                                                    user: userFound,
+                                                    content: content.substring(3, content.length - 6)
+                                                });
+                                                answer.save();
+                                                res.redirect("/authQuestions");
+                                            } else{
+                                                res.redirect("/authQuestions");
+                                            }
+                                        } else{
+                                            res.send("Ya existe esa misma respuesta!");
+                                        }
+                                    } else{
+                                        res.send(err);
+                                    }
+                                });
                             } else{
-                                res.send("Ya existe esa misma respuesta!");
                             }
                         } else{
                             res.send(err);
                         }
                     });
-                } else{
-                }
-            } else{
-                res.send(err);
-            }
-        });
                 } else{
                     res.send("El usuario no existe!");
                 }
@@ -92,5 +92,5 @@ const responderPregunta = (req, res) => {
 
 module.exports = {
     mostrarPreguntaRespuesta,
-    responderPregunta
+    responderPregunta,
 }

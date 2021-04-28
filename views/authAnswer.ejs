@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+
+<main role="main" class="inner cover">
+    <h1 class="cover-heading">Te ha servido la respuesta?</h1>
+    <form class="formulario" method="POST" action="/authAnswer/:respuesta">
+        <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" autocomplete="off">
+        <input type="text" class="form-control" name="content" id="floatingInput" placeholder="Contenido" autocomplete="off">
+        <button class="w-100 btn btn-lg btn-primary botones" type="submit">Funcionó</button>
+    </form>
+    <a href="/authQuestions" class="btn btn-lg btn-secondary botones">Ver todas las preguntas</a>
+    <div class="card respuesta" style="width: 25rem;">
+        <div class="card-header">
+            <%=answer.content%>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item contenido">por <%=answer.user.username%> </li>
+        </ul>
+        <% if(answer.correct === true){ %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item contenido">Respuesta Correcta</li>
+            </ul>
+        <% } %>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

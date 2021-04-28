@@ -22,6 +22,11 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item contenido">por <%=answer.user.username%> </li>
             </ul>
+            <% if(answer.correct === true){ %>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item contenido">Respuesta Correcta</li>
+                </ul>
+            <% } %>
         </div>
     <%})%>
 </main>

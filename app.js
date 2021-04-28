@@ -15,6 +15,7 @@ const questionsRoutes = require("./routes/questionsRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const searchQuestionRoutes = require("./routes/searchQuestionRoutes");
 const signOutRoutes = require("./routes/signOutRoutes");
+const authAnswerRoutes = require("./routes/authAnswerRoutes");
 const session = require("express-session");
 const passport = require("passport");
 
@@ -48,6 +49,7 @@ app.use(questionsRoutes);
 app.use(questionRoutes);
 app.use(searchQuestionRoutes);
 app.use(signOutRoutes);
+app.use(authAnswerRoutes);
 
 //? Listener de mi app
 app.listen(3000, () => console.log("Server running on port 3000"));
